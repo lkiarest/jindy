@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.qintx.myjindy"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="14"
+        android:targetSdkVersion="17" />
+
+    <uses-permission android:name="android.permission.INTERNET" >
+    </uses-permission>
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/Theme.DEMO" >
+        <activity
+            android:name="com.qintx.myjindy.MainActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <service android:name="com.qintx.myjindy.content.manager.ArticleService" >
+            <intent-filter>
+                <action android:name="com.qintx.myjindy.manager.ACTION_GET_ARTICLES" />
+                <action android:name="com.qintx.myjindy.manager.ACTION_GET_ARTICLE_CONTENT"/>
+            </intent-filter>
+        </service>
+
+        <activity
+            android:name="com.qintx.myjindy.ArticleActivity"
+            android:label="@string/app_name" >
+        </activity>
+    </application>
+
+</manifest>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">金地自在城</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="SID_NO_CHANNEL">无栏目列表</string>
+    <string name="SID_NO_ARTICLE">读取文章列表失败</string>
+    <string name="SID_EMPTY_CONTENT">读取文章内容失败</string>
+    <string name="SID_LOADING">努力加载中 ...</string>
+
+</resources>

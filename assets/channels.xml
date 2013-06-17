@@ -1,0 +1,26 @@
+<channels>
+    <channel>
+        <name>物业</name>
+        <url>http://www.jindy.myjindy.net/html/wuye/</url>
+    </channel>
+    <channel>
+        <name>餐饮</name>
+        <url>http://www.jindy.myjindy.net/html/food/</url>
+    </channel>
+    <channel>
+        <name>商户</name>
+        <url>http://www.jindy.myjindy.net/html/business/</url>
+    </channel>
+    <channel>
+        <name>小学动态</name>
+        <url>http://www.jindy.myjindy.net/html/schoolnews/</url>
+    </channel>
+    <channel>
+        <name>装修</name>
+        <url>http://www.jindy.myjindy.net/html/zhuangxiu/</url>
+    </channel>
+    <channel>
+        <name>房产</name>
+        <url>http://www.jindy.myjindy.net/html/njfc/</url>
+    </channel>
+</channels>

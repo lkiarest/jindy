@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>  
+<resources xmlns:android="http://schemas.android.com/apk/res/android">  
+    <style name="Theme.DEMO" parent="Theme.Sherlock.Light">  
+        <item name="actionBarStyle">@style/Widget.DEMO.ActionBar</item>  
+        <item name="android:actionBarStyle">@style/Widget.DEMO.ActionBar</item>  
+ <!-- 
+        <item name="actionBarTabStyle">@style/CustomActionBarTabStyle</item>
+        <item name="android:actionBarTabStyle">@style/CustomActionBarTabStyle</item>
+  -->
+        <item name="actionBarTabTextStyle">@style/CustomTabText</item>
+        <item name="android:actionBarTabTextStyle">@style/CustomTabText</item>
+
+        <item name="actionBarDivider">@drawable/divider_vertical_dark</item>
+        <item name="android:actionBarDivider">@drawable/divider_vertical_dark</item>
+
+        <item name="actionBarTabBarStyle">@style/CustomTabBar</item>
+        <item name="android:actionBarTabBarStyle">@style/CustomTabBar</item>
+
+    </style>
+
+    <style name="Widget.DEMO.ActionBar" parent="Widget.Sherlock.ActionBar.Solid">     
+        <item name="background">@color/chocolate</item>  
+        <item name="backgroundStacked">@color/chocolate</item>  
+        <item name="backgroundSplit">@color/wheat</item>  
+        <item name="titleTextStyle">@style/Widget.DEMO.ActionBar.Title</item>  
+
+        <item name="android:background">@color/chocolate</item>  
+        <item name="android:backgroundStacked">@color/chocolate</item>  
+        <item name="android:backgroundSplit">@color/wheat</item>  
+        <item name="android:titleTextStyle">@style/Widget.DEMO.ActionBar.Title</item>
+    </style>
+
+    <style name="Widget.DEMO.ActionBar.Title" parent="@android:TextAppearance.Holo.Widget.ActionBar.Title">  
+        <item name="android:textColor">#fff</item>
+    </style>
+
+    <style name="CustomActionBarTabStyle" parent="@style/Widget.Sherlock.Light.ActionBar.TabView">
+        <item name="android:background">@null</item>
+        
+    </style>
+
+    <style name="CustomTabText" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/navy</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+    
+    <style name="CustomTabBar" parent="@style/Widget.Sherlock.Light.ActionBar.TabBar">
+        <item name="android:background">@color/burlywood</item>
+    </style>
+
+</resources>  
