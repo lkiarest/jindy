@@ -8,5 +8,7 @@
     <string name="SID_NO_ARTICLE">读取文章列表失败</string>
     <string name="SID_EMPTY_CONTENT">读取文章内容失败</string>
     <string name="SID_LOADING">努力加载中 ...</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="login">登陆</string>
 
 </resources>

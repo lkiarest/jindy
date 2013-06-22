@@ -65,6 +65,13 @@ public class MainActivity extends SherlockActivity implements TabListener, OnIte
         registerBroadcastReceiver();
         articleList = (ListView)this.findViewById(R.id.articleList);
         initTabs();
+//        new Thread() {
+//            public void run() {
+//                if (Checkcode.getCheckcode() != null) {
+//                    Log.d(TAG, "check code got !");
+//                }
+//            }
+//        }.start();
     }
 
     private void registerBroadcastReceiver() {
@@ -142,9 +149,19 @@ public class MainActivity extends SherlockActivity implements TabListener, OnIte
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        // refresh button
         menu.add("Refresh")
         .setIcon(R.drawable.ic_refresh)
         .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
+        // sub menus
+        com.actionbarsherlock.view.SubMenu subMenu1 = menu.addSubMenu("Action Item");
+        subMenu1.add("login").setTitle("用户登陆");
+        subMenu1.add("exit").setTitle("退出系统");
+
+        MenuItem subMenu1Item = subMenu1.getItem();
+        subMenu1Item.setIcon(R.drawable.ic_title_share_default);
+        subMenu1Item.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
+
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -153,6 +170,11 @@ public class MainActivity extends SherlockActivity implements TabListener, OnIte
         if (item.getTitle().equals("Refresh")) {
             ProgressDlg.showProgress(this, null, R.string.SID_LOADING);
             startArticleService(currentChannelUrl);
+        } else if (item.getTitle().equals("用户登陆")) {
+            Intent login = new Intent(this, LoginActivity.class);
+            startActivity(login);
+        } else if (item.getTitle().equals("退出系统")) {
+            finish();
         }
         return super.onOptionsItemSelected(item);
     }
