@@ -60,8 +60,7 @@ public class ArticleService extends Service {
     }
 
     private void requestArticleContent(final String articleUrl) {
-        HttpUtil client = new HttpUtil();
-        String content = client.getContentAsString(articleUrl);
+        String content = HttpUtil.getContentAsString(articleUrl);
         Intent intent = new Intent(Constants.ACTION_GET_ARTICLE_CONTENT_RESULT);
         if (content != null) {
             addArticle(articleUrl, filterArticleContent(content));
@@ -76,8 +75,7 @@ public class ArticleService extends Service {
     }
 
     private void requestArticles(String channelUrl) {
-        HttpUtil client = new HttpUtil();
-        String content = client.getContentAsString(channelUrl);
+        String content = HttpUtil.getContentAsString(channelUrl);
         Intent intent = new Intent(Constants.ACTION_GET_ARTICLES_RESULT);
         if (content != null) {
             managerArticles(channelUrl, content);

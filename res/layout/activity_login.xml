@@ -5,32 +5,45 @@
 	android:orientation="vertical"
     tools:context=".LoginActivity" >
 
-    <EditText 
+    <EditText
         android:id="@+id/etName"
-        android:layout_width="match_parent"
-    	android:layout_height="wrap_content"
-    	android:hint="请输入用户名"
-        />
-    <EditText 
+        android:layout_width="190dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dip"
+        android:hint="请输入用户名" />
+
+    <EditText
         android:id="@+id/etPwd"
-        android:layout_width="match_parent"
-    	android:layout_height="wrap_content"
-    	android:hint="请输入密码"
-    	android:password="true"
-        />
-    <ImageView 
-        android:id="@+id/ivCheckcode"
-        android:layout_width="wrap_content"
-    	android:layout_height="wrap_content"
-    	android:minWidth="84px"
-    	android:minHeight="24px"
-    	android:layout_marginLeft="20px"
-        />
+        android:layout_width="190dp"
+        android:layout_height="wrap_content"
+        android:hint="请输入密码"
+        android:password="true" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <EditText
+            android:id="@+id/etCheckcode"
+            android:layout_width="190dp"
+            android:layout_height="wrap_content"
+            android:hint="请输入验证码" />
+
+        <ImageView
+            android:id="@+id/ivCheckcode"
+            android:layout_width="wrap_content"
+            android:layout_height="24px"
+            android:layout_marginLeft="20px"
+            android:layout_marginTop="10dip"
+            android:minWidth="84px" />
+    </LinearLayout>
 
 	<Button 
 	    android:id="@+id/btnLogin"
         android:layout_width="match_parent"
-    	android:layout_height="wrap_content"
+    	android:layout_height="40dip"
     	android:text="@string/login"
+    	android:layout_marginTop="10dip"
 	    />
 </LinearLayout>
