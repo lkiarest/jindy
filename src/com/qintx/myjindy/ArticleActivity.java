@@ -89,7 +89,7 @@ public class ArticleActivity extends SherlockActivity {
     @Override
     public boolean onCreateOptionsMenu(com.actionbarsherlock.view.Menu menu) {
         menu.add(R.string.SID_LIST_COMMENT)
-        .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
+        .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
         menu.add(R.string.SID_NEW_COMMENT)
         .setIcon(R.drawable.ic_compose)
         .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);

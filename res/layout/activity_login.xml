@@ -10,23 +10,31 @@
         android:layout_width="190dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dip"
+        android:layout_marginLeft="10dip"
+        android:background="@drawable/input_box"
         android:hint="请输入用户名" />
 
     <EditText
         android:id="@+id/etPwd"
+        android:layout_marginLeft="10dip"
+        android:layout_marginTop="10dip"
         android:layout_width="190dp"
         android:layout_height="wrap_content"
+        android:background="@drawable/input_box"
         android:hint="请输入密码"
         android:password="true" />
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dip"
+        android:layout_marginLeft="10dip"
         android:orientation="horizontal" >
 
         <EditText
             android:id="@+id/etCheckcode"
             android:layout_width="190dp"
+            android:background="@drawable/input_box"
             android:layout_height="wrap_content"
             android:hint="请输入验证码" />
 
@@ -41,8 +49,8 @@
 
         <ProgressBar
             android:id="@+id/pgLoading"
-            android:layout_width="30dip"
-            android:layout_height="30dip"
+            android:layout_width="24dip"
+            android:layout_height="24dip"
             android:layout_gravity="center_vertical"
             style="?android:attr/progressBarStyleSmall"
             />
