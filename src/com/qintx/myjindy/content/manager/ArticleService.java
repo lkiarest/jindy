@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import com.qintx.myjindy.constant.Constants;
@@ -46,7 +47,7 @@ public class ArticleService extends Service {
                 }.start();
             }
         } else if (Constants.ACTION_GET_ARTICLE_CONTENT.equals(action)) {
-            final String articalUrl = intent.getStringExtra(Constants.INTENT_ARTICLE_URL);
+            final String articalUrl = intent.getStringExtra(Constants.INTENT_URL);
             if ((articalUrl != null) && (!articalUrl.isEmpty())) {
                 new Thread() {
                     public void run() {
@@ -65,11 +66,11 @@ public class ArticleService extends Service {
         if (content != null) {
             addArticle(articleUrl, filterArticleContent(content));
             intent.putExtra(Constants.ACTION_RESULT, true);
-            intent.putExtra(Constants.INTENT_ARTICLE_URL, articleUrl);
+            intent.putExtra(Constants.INTENT_URL, articleUrl);
             sendBroadcast(intent);
         } else {
             intent.putExtra(Constants.ACTION_RESULT, false);
-            intent.putExtra(Constants.INTENT_ARTICLE_URL, articleUrl);
+            intent.putExtra(Constants.INTENT_URL, articleUrl);
             sendBroadcast(intent);
         }
     }
@@ -107,18 +108,28 @@ public class ArticleService extends Service {
 
         return articles;
     }
-    
-    private String filterArticleContent(String content) {
+
+    private Article filterArticleContent(String content) {
         if (content == null || content.isEmpty()) {
             return null;
         }
+        Article article = new Article();
         Document doc = Jsoup.parse(content);
         Elements elements = doc.select("#Article .content");
         if (elements == null) {
             return null;
         }
+        article.setContent(elements.get(0).html());
 
-        return elements.get(0).html();
+        Element comment = doc.select("#comment_iframe").get(0);
+        String cmdUrl = comment.attr("src");
+        if (cmdUrl != null && cmdUrl.contains("iframe=")) {
+            cmdUrl = cmdUrl.substring(0, cmdUrl.indexOf("iframe") - 1);
+        }
+        Log.d(TAG, "comment url is " + cmdUrl);
+        article.setCommentUrl(cmdUrl);
+
+        return article;
     }
 
     private void managerArticles(String url, String msg) {
@@ -133,10 +144,8 @@ public class ArticleService extends Service {
         mgr.addArticleList(url, articles);
     }
 
-    private void addArticle(String url, String msg) {
-        Article article = new Article();
+    private void addArticle(String url, Article article) {
         article.setUrl(url);
-        article.setContent(msg);
         mgr.addArticle(url, article);
     }
 }

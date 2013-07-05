@@ -7,7 +7,7 @@ import java.util.Map;
 import com.qintx.myjindy.content.entity.Article;
 
 public class ArticleManager {
-    
+
     private static ArticleManager instance;
     
     private Map<String, List<Article>> articleMap;

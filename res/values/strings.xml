@@ -12,8 +12,13 @@
     <string name="title_activity_logoff">注销登录</string>
     <string name="login">登录</string>
     <string name="login_sucess">登录成功</string>
-	<string name="login_failed">登录失败</string>
-	<string name="logoff_sucess">注销成功</string>
-	<string name="logoff_failed">注销失败</string>
-	<string name="exit_app">退出系统</string>
+    <string name="login_failed">登录失败</string>
+    <string name="logoff_sucess">注销成功</string>
+    <string name="logoff_failed">注销失败</string>
+    <string name="exit_app">退出系统</string>
+    <!-- comment -->
+    <string name="SID_LIST_COMMENT">查看评论</string>
+    <string name="SID_NEW_COMMENT">发表评论</string>
+    <string name="title_activity_comment_list">CommentListActivity</string>
+
 </resources>

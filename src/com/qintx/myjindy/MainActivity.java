@@ -236,7 +236,7 @@ public class MainActivity extends SherlockActivity implements TabListener, OnIte
     private void showArticle(String title, String url) {
         Intent showIntent = new Intent(this, ArticleActivity.class);
         showIntent.putExtra(Constants.INTENT_ARTICLE_TITLE, title);
-        showIntent.putExtra(Constants.INTENT_ARTICLE_URL, url);
+        showIntent.putExtra(Constants.INTENT_URL, url);
         this.startActivity(showIntent);
     }
 

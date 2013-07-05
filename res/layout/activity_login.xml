@@ -33,7 +33,7 @@
         <ImageView
             android:id="@+id/ivCheckcode"
             android:layout_width="wrap_content"
-            android:layout_height="24px"
+            android:layout_height="36px"
             android:layout_marginLeft="20px"
             android:layout_marginTop="10dip"
             android:minWidth="84px" />

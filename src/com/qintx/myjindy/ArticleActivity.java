@@ -8,34 +8,39 @@ import com.qintx.myjindy.content.manager.ArticleManager;
 import com.qintx.myjindy.utility.ProgressDlg;
 
 import android.os.Bundle;
-import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.view.Menu;
+import android.util.Log;
 import android.webkit.WebView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class ArticleActivity extends SherlockActivity {
 
+    private static final String TAG = "ArticleActivity";
+    
+    private String title;
+
     private WebView tvArticle;
+    private Article articleEntity;
 
     private BroadcastReceiver articleReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            
+
             boolean success = intent.getBooleanExtra(Constants.ACTION_RESULT, false);
             if (success) {
                 // show article
-                String url = intent.getStringExtra(Constants.INTENT_ARTICLE_URL);
+                String url = intent.getStringExtra(Constants.INTENT_URL);
                 if ((url == null) || url.isEmpty()) {
                     Toast.makeText(ArticleActivity.this, R.string.SID_EMPTY_CONTENT, Constants.TOAST_DURATION).show();
                     return;
-                } 
+                }
                 Article article = ArticleManager.getInstance().getArticle(url);
                 if (article != null) {
+                    articleEntity = article;
                     tvArticle.loadDataWithBaseURL("about:blank", article.getContent(), "text/html", "utf-8", null);
                 }
             } else {
@@ -44,7 +49,7 @@ public class ArticleActivity extends SherlockActivity {
             }
             ProgressDlg.closeProgress();
         }};
-    
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,10 +58,10 @@ public class ArticleActivity extends SherlockActivity {
         // add back button
         this.getSupportActionBar().setHomeButtonEnabled(true);
         this.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        
+
         IntentFilter filter = new IntentFilter(Constants.ACTION_GET_ARTICLE_CONTENT_RESULT);
         this.registerReceiver(articleReceiver, filter);
-        
+
         tvArticle = (WebView)this.findViewById(R.id.tvArticle);
 
         // get title
@@ -64,29 +69,61 @@ public class ArticleActivity extends SherlockActivity {
         setTitle(title);
 
         // get article content
-        String url = this.getIntent().getStringExtra(Constants.INTENT_ARTICLE_URL);
+        String url = this.getIntent().getStringExtra(Constants.INTENT_URL);
         requestContent(url);
     }
-    
+
     private void requestContent(String url) {
         ProgressDlg.showProgress(this, null, R.string.SID_LOADING);
         Intent requestIntent = new Intent(Constants.ACTION_GET_ARTICLE_CONTENT);
-        requestIntent.putExtra(Constants.INTENT_ARTICLE_URL, url);
+        requestIntent.putExtra(Constants.INTENT_URL, url);
         startService(requestIntent);
     }
 
     private void setTitle(String title) {
         TextView tvTitle = (TextView)this.findViewById(R.id.tvTitle);
         tvTitle.setText(title);
+        this.title = title;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(com.actionbarsherlock.view.Menu menu) {
+        menu.add(R.string.SID_LIST_COMMENT)
+        .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
+        menu.add("PostComment")
+        .setIcon(R.drawable.ic_compose)
+        .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    private void showComments() {
+        if (articleEntity == null) {
+            return;
+        }
+        Intent intent = new Intent(this, CommentListActivity.class);
+        intent.putExtra(Constants.INTENT_ARTICLE_TITLE, title);
+        intent.putExtra(Constants.INTENT_URL, articleEntity.getCommentUrl());
+        Log.d(TAG, "start comments activity with " + articleEntity.getCommentUrl() + ", " + title);
+        this.startActivity(intent);
+    }
+
+    private void newComments() {
+        
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-        case android.R.id.home:
+        if(item.getItemId() == android.R.id.home) {
             onBackPressed();
-            break;
+        } else {
+            String title = item.getTitle().toString();
+            if (title.equals(this.getResources().getString(R.string.SID_LIST_COMMENT))) {
+                showComments();
+            } else if (title.equals(this.getResources().getString(R.string.SID_NEW_COMMENT))) {
+                newComments();
+            }
         }
+
         return super.onOptionsItemSelected(item);
     }
 

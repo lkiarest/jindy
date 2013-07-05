@@ -20,6 +20,8 @@ public class Checkcode {
             con.release();
             InputStream is = HttpUtil.getContentAsStream(Constants.CHECK_CODE_URL, con);
             if (is != null) {
+                //Rect outPadding = new Rect();
+                //Options opts = new Options();
                 Bitmap bitmap = BitmapFactory.decodeStream(is);
                 try {
                     is.close();

@@ -14,7 +14,7 @@ public class Constants {
 
     public final static String INTENT_CHANNEL_URL = "channelUrl";
     public final static String INTENT_ARTICLE_TITLE = "title";
-    public final static String INTENT_ARTICLE_URL = "url";
+    public final static String INTENT_URL = "url";
 
     // request url
     public final static String HOST = "www.jindy.myjindy.net";
@@ -29,4 +29,10 @@ public class Constants {
     public final static int SUCCESS_CODE = 200;
     public final static String LOGIN_SUCCESS_LABLE = "登录成功";
     public final static String LOGOFF_SUCCESS_LABLE = "退出成功";
+    public final static String LOGIN_ERR1_LABEL = "验证码输入错误";
+    public final static String LOGIN_ERR2_LABEL = "密码错误";
+
+    //comment style
+    public final static String COMMENT_TITLE_CSS = "font-size:12px;color:#333333;";
+    public final static String COMMENT_CONTENT_CSS = "background:none repeat scroll 0 0 #F6F9FB;border:1px solid #C4D5DF;padding:8px 10px;";
 }

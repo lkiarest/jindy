@@ -40,7 +40,11 @@ public class LoginActivity extends Activity implements OnClickListener {
                     finish();
                     break;
                 case MSG_LOGIN_FAILED:
-                    Toast.makeText(LoginActivity.this, R.string.login_failed, Constants.TOAST_DURATION).show();
+                    if (msg.arg1 == AccountManager.LOGIN_ERR_CHECKCODE) {
+                        Toast.makeText(LoginActivity.this, Constants.LOGIN_ERR1_LABEL, Constants.TOAST_DURATION).show();
+                    } else if (msg.arg1 == AccountManager.LOGIN_ERR_PWD) {
+                        Toast.makeText(LoginActivity.this, Constants.LOGIN_ERR2_LABEL, Constants.TOAST_DURATION).show();
+                    }
                     break;
                 default:
                     break;
@@ -65,7 +69,7 @@ public class LoginActivity extends Activity implements OnClickListener {
 
         getCheckcode();
     }
-    
+
     private void getCheckcode() {
         new GetCheckCode().execute();
     }
@@ -105,15 +109,17 @@ public class LoginActivity extends Activity implements OnClickListener {
         Log.d(TAG, "start login with [" + name + ", " + pwd + "]," + checkcode);
         new Thread() {
             public void run() {
-                boolean loginResult = AccountManager.getInstance().login(name, pwd, checkcode);
-                if (loginResult) {
+                int loginResult = AccountManager.getInstance().login(name, pwd, checkcode);
+                if (loginResult == 0) {
                     loginHandler.sendEmptyMessage(MSG_LOGIN_SUCCESS);
                 } else {
-                    loginHandler.sendEmptyMessage(MSG_LOGIN_FAILED);
+                    Message msg = Message.obtain();
+                    msg.what = MSG_LOGIN_FAILED;
+                    msg.arg1 = loginResult;
+                    loginHandler.sendMessage(msg);
                 }
             }
         }.start();
-        
     }
 
     @Override

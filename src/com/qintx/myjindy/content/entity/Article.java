@@ -5,11 +5,12 @@ public class Article {
     private String title;
     private String url;
     private String content;
-    
+    private String commentUrl;
+
     public Article() {
         
     }
-    
+
     public Article(String title, String url) {
         this.title = title;
         this.url = url;
@@ -37,6 +38,14 @@ public class Article {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public String getCommentUrl() {
+        return commentUrl;
+    }
+
+    public void setCommentUrl(String commentUrl) {
+        this.commentUrl = commentUrl;
     }
 
 }
