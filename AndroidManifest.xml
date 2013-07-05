@@ -35,7 +35,7 @@
 
         <activity
             android:name="com.qintx.myjindy.ArticleActivity"
-            android:label="@string/app_name" >
+            android:label="@string/SID_VIEW__ARTICLE_TITLE" >
         </activity>
         <activity
             android:name="com.qintx.myjindy.LoginActivity"
@@ -43,7 +43,11 @@
         </activity>
         <activity
             android:name="com.qintx.myjindy.CommentListActivity"
-            android:label="@string/app_name" >
+            android:label="@string/SID_COMMENT_APP_TITLE" >
+        </activity>
+        <activity
+            android:name="com.qintx.myjindy.NewCommentActivity"
+            android:label="@string/title_activity_new_comment" >
         </activity>
     </application>
 

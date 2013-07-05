@@ -24,6 +24,8 @@ public class Constants {
     public final static String LOGIN_PAGE_URL = INDEX_URL + "index.php?m=member&c=index&a=login&forward=http%3A%2F%2Fwww.myjindy.net%2F&siteid=1";
     public final static String LOGIN_URL = INDEX_URL + "index.php?m=member&c=index&a=login";
     public final static String LOGOFF_URL = INDEX_URL + "index.php?m=member&c=index&a=logout&forward=http%3A%2F%2Fwww.jindy.myjindy.net%2F&siteid=1";
+    //post comment
+    public final static String POST_COMMENT_URL = "http://www.jindy.myjindy.net/index.php?m=comment&c=index&a=post&commentid=";
 
     // request result
     public final static int SUCCESS_CODE = 200;

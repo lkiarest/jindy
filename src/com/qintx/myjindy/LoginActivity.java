@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.qintx.myjindy.checkcode.Checkcode;
 import com.qintx.myjindy.constant.Constants;
 import com.qintx.myjindy.user.AccountManager;
+import com.qintx.myjindy.utility.ProgressDlg;
 
 public class LoginActivity extends Activity implements OnClickListener {
     
@@ -34,6 +35,7 @@ public class LoginActivity extends Activity implements OnClickListener {
     private Handler loginHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
+            ProgressDlg.closeProgress();
             switch (msg.what) {
                 case MSG_LOGIN_SUCCESS:
                     Toast.makeText(LoginActivity.this, R.string.login_sucess, Constants.TOAST_DURATION).show();
@@ -107,6 +109,7 @@ public class LoginActivity extends Activity implements OnClickListener {
             return;
         }
         Log.d(TAG, "start login with [" + name + ", " + pwd + "]," + checkcode);
+        ProgressDlg.showProgress(this, null, R.string.SID_LOGGING);
         new Thread() {
             public void run() {
                 int loginResult = AccountManager.getInstance().login(name, pwd, checkcode);

@@ -9,11 +9,11 @@ import com.qintx.myjindy.content.entity.Article;
 public class ArticleManager {
 
     private static ArticleManager instance;
-    
+
     private Map<String, List<Article>> articleMap;
-    
+
     private Map<String, Article> articleContent;
-    
+
     private ArticleManager() {
         articleMap = new HashMap<String, List<Article>>();
         articleContent = new HashMap<String, Article>();

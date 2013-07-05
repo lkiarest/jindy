@@ -55,6 +55,9 @@ public class CommentListActivity extends SherlockActivity {
         @Override
         protected void onPostExecute(String result) {
             ProgressDlg.closeProgress();
+            if (result == null) {
+                result = "<div style='" + Constants.COMMENT_CONTENT_CSS + "'>" + getResources().getString(R.string.SID_NO_COMMENT) + "</div>";
+            }
             wvComments.loadDataWithBaseURL("about:blank", result, "text/html", "utf-8", null);
             super.onPostExecute(result);
         }
@@ -72,6 +75,11 @@ public class CommentListActivity extends SherlockActivity {
             Document doc = Jsoup.parse(content);
             StringBuilder result = new StringBuilder();
             Elements titles = doc.select(".main .col-left .comment .title");
+
+            if (titles.size() == 0) {
+                return null;
+            }
+
             for (int i = 0; i < titles.size(); i++) {
                 Element titleElem = titles.get(i);
                 String title = titleElem.text();

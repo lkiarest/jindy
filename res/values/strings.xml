@@ -6,19 +6,28 @@
     <string name="hello_world">Hello world!</string>
     <string name="SID_NO_CHANNEL">无栏目列表</string>
     <string name="SID_NO_ARTICLE">读取文章列表失败</string>
+    <string name="SID_VIEW__ARTICLE_TITLE">阅读文章</string>
     <string name="SID_EMPTY_CONTENT">读取文章内容失败</string>
     <string name="SID_LOADING">努力加载中 ...</string>
     <string name="title_activity_login">用户登录</string>
     <string name="title_activity_logoff">注销登录</string>
     <string name="login">登录</string>
+    <string name="SID_LOGGING">正在登录...</string>
     <string name="login_sucess">登录成功</string>
     <string name="login_failed">登录失败</string>
     <string name="logoff_sucess">注销成功</string>
     <string name="logoff_failed">注销失败</string>
     <string name="exit_app">退出系统</string>
     <!-- comment -->
+    <string name="SID_COMMENT_APP_TITLE">评论列表</string>
     <string name="SID_LIST_COMMENT">查看评论</string>
     <string name="SID_NEW_COMMENT">发表评论</string>
+    <string name="SID_NO_COMMENT">此文章无评论</string>
     <string name="title_activity_comment_list">CommentListActivity</string>
+    <string name="title_activity_new_comment">发表评论</string>
+    <string name="inputNewComment">请输入评论</string>
+    <string name="SID_POSTING">正在提交...</string>
+    <string name="SID_POST_OK">提交成功</string>
+    <string name="SID_POST_FAILED">提交失败</string>
 
 </resources>

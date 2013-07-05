@@ -90,16 +90,13 @@ public class ArticleActivity extends SherlockActivity {
     public boolean onCreateOptionsMenu(com.actionbarsherlock.view.Menu menu) {
         menu.add(R.string.SID_LIST_COMMENT)
         .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
-        menu.add("PostComment")
+        menu.add(R.string.SID_NEW_COMMENT)
         .setIcon(R.drawable.ic_compose)
         .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
         return super.onCreateOptionsMenu(menu);
     }
 
     private void showComments() {
-        if (articleEntity == null) {
-            return;
-        }
         Intent intent = new Intent(this, CommentListActivity.class);
         intent.putExtra(Constants.INTENT_ARTICLE_TITLE, title);
         intent.putExtra(Constants.INTENT_URL, articleEntity.getCommentUrl());
@@ -108,7 +105,11 @@ public class ArticleActivity extends SherlockActivity {
     }
 
     private void newComments() {
-        
+        Intent intent = new Intent(this, NewCommentActivity.class);
+        intent.putExtra(Constants.INTENT_ARTICLE_TITLE, title);
+        intent.putExtra(Constants.INTENT_URL, articleEntity.getCommentUrl());
+        Log.d(TAG, "start comments eidt activity with " + articleEntity.getCommentUrl() + ", " + title);
+        this.startActivity(intent);
     }
 
     @Override
