@@ -33,10 +33,19 @@
         <ImageView
             android:id="@+id/ivCheckcode"
             android:layout_width="wrap_content"
-            android:layout_height="36px"
-            android:layout_marginLeft="20px"
-            android:layout_marginTop="10dip"
-            android:minWidth="84px" />
+            android:layout_height="30dip"
+            android:layout_marginLeft="10dip"
+            android:layout_gravity="center_vertical"
+            android:minWidth="84px"
+            android:visibility="gone" />
+
+        <ProgressBar
+            android:id="@+id/pgLoading"
+            android:layout_width="30dip"
+            android:layout_height="30dip"
+            android:layout_gravity="center_vertical"
+            style="?android:attr/progressBarStyleSmall"
+            />
     </LinearLayout>
 
 	<Button 

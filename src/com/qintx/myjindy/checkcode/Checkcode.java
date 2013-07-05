@@ -8,13 +8,15 @@ import com.qintx.myjindy.http.HttpCon;
 import com.qintx.myjindy.http.HttpUtil;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
+import android.util.DisplayMetrics;
 import android.util.Log;
 
 public class Checkcode {
 
     private static final String TAG = "Checkcode";
 
-    public static Bitmap getCheckcode() {
+    public static Bitmap getCheckcode(float density) {
         HttpCon con = new HttpCon();
         if (HttpUtil.getContentAsStream(Constants.LOGIN_PAGE_URL, con) != null) {
             con.release();
@@ -23,6 +25,7 @@ public class Checkcode {
                 //Rect outPadding = new Rect();
                 //Options opts = new Options();
                 Bitmap bitmap = BitmapFactory.decodeStream(is);
+
                 try {
                     is.close();
                 } catch (IOException e) {
@@ -30,7 +33,9 @@ public class Checkcode {
                 } finally {
                     con.release();
                 }
-                return bitmap;
+                Matrix matrix = new Matrix();
+                matrix.postScale(density, density);
+                return Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
             }
         }
         return null;

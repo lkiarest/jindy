@@ -6,12 +6,14 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.qintx.myjindy.checkcode.Checkcode;
@@ -31,6 +33,7 @@ public class LoginActivity extends Activity implements OnClickListener {
     private EditText etPwd;
     private EditText etCheckcode;
     private Button btnLogin;
+    private ProgressBar pgLoading;
 
     private Handler loginHandler = new Handler() {
         @Override
@@ -66,6 +69,8 @@ public class LoginActivity extends Activity implements OnClickListener {
         ivCheckcode = (ImageView)findViewById(R.id.ivCheckcode);
         btnLogin = (Button)findViewById(R.id.btnLogin);
 
+        pgLoading = (ProgressBar)findViewById(R.id.pgLoading);
+
         btnLogin.setOnClickListener(this);
         ivCheckcode.setOnClickListener(this);
 
@@ -81,12 +86,16 @@ public class LoginActivity extends Activity implements OnClickListener {
         @Override
         protected void onPreExecute() {
             btnLogin.setEnabled(false);
+            ivCheckcode.setVisibility(View.GONE);
+            pgLoading.setVisibility(View.VISIBLE);
             super.onPreExecute();
         }
 
         @Override
         protected Bitmap doInBackground(Void... params) {
-            return Checkcode.getCheckcode();
+            DisplayMetrics metrics = new DisplayMetrics();
+            getWindowManager().getDefaultDisplay().getMetrics(metrics);
+            return Checkcode.getCheckcode(metrics.density);
         }
 
         @Override
@@ -94,6 +103,8 @@ public class LoginActivity extends Activity implements OnClickListener {
             if (result != null) {
                 btnLogin.setEnabled(true);
             }
+            ivCheckcode.setVisibility(View.VISIBLE);
+            pgLoading.setVisibility(View.GONE);
             ivCheckcode.setImageBitmap(result);
             super.onPostExecute(result);
         }
